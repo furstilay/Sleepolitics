@@ -321,8 +321,9 @@ body {
     transform: scale(1);
 }
 
-.victory-emoji {
-    font-size: 3.5rem;
+.victory-icon {
+    width: 80px;
+    height: auto;
     margin-bottom: 16px;
 }
 
