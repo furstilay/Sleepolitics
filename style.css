@@ -1,0 +1,407 @@
+body {
+    margin: 0;
+    background-color: #00A5F7;
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.header {
+    height: 16vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 15px;
+    box-sizing: border-box;
+    direction: rtl; /* Ensure text is right-to-left for Hebrew */
+}
+
+.header .magen_david {
+    height: 30%;
+    width: auto;
+    margin-left: 12px;
+    margin-right: 12px;
+    max-width: 30px;
+}
+
+.game-instructions {
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.1;
+}
+.game-instructions span {
+    margin: 0;
+    font-weight: 900;
+    font-size: 1.45rem;
+    color: #ecf5f9; /* Gold color for emphasis */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 3vh;
+    height: 80vh;
+    box-sizing: border-box;
+}
+
+/* Carousel Component Styling */
+.carousel-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    z-index: 10;
+}
+
+/* Subtle Success Pulse for fast scrolling check */
+.carousel-box.subtle-pulse {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+    transform: scale(1.03);
+    transition: all 1s ease;
+}
+/* Temporary Success Glow Effect for Carousels */
+.carousel-box.success-pulse {
+    background: rgba(34, 197, 94, 0.5) !important;
+    box-shadow: 0 0 35px rgba(34, 197, 94, 0.85), 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.08);
+}
+
+.carousel-arrow {
+    background: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 900;
+    color: #00A5F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.carousel-arrow:hover {
+    transform: scale(1.1);
+    background: #f8fafc;
+}
+
+.carousel-arrow:active {
+    transform: scale(0.95);
+}
+
+.carousel-viewport {
+    width: 170px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-viewport img {
+    max-height: 160px;
+    max-width: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Scene Container */
+.scene-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+/* Character & Bedding Wrapper for Slide Animations */
+.character-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.9s ease;
+}
+
+/* Entrance Animation from Left */
+.slide-in-left {
+    animation: slideInFromLeft 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Exit Animation to Right */
+.slide-out-right {
+    animation: slideOutToRight 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Character Animations & Layout */
+.character {
+    position: relative;
+    display: grid;
+    width: 140px;
+    height: 200px;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.character .char {
+    width: 140px;
+    height: auto;
+    grid-area: 1 / 1 / -1 / -1;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.character .char-body {
+    z-index: 1;
+    transform-origin: bottom center;
+    animation: bodyFullAnimation 4.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.character .char-head {
+    margin-top: 2px;
+    z-index: 20;
+    transform-origin: 50% 90%;
+    animation: headFullAnimation 4.2s ease-in-out infinite;
+}
+
+/* --- Natural & Synchronized Sleep States --- */
+.character.sleeping {
+    animation: none;
+    transform: translateY(-30px) rotate(-3deg) scaleY(0.97);
+}
+
+.character.sleeping .char-body {
+    animation: none;
+    transform: rotate(-10deg) translateY(5px);
+}
+
+.character.sleeping .char-head {
+    animation: none;
+    /* תתאים את הערכים כאן בדיוק לפי איך שהתמונות שלך בנויות */
+    transform: translateY(24px) translateX(-8px) rotate(-8deg);
+    z-index: 10; /* Ensure head is above body */
+}
+
+/* Flying / Transitioning Bedding Elements */
+.flying-item {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.flying-pillow {
+    width: 90px;
+    top: -60px;
+    left: -120px;
+}
+
+.flying-blanket {
+    width: 150px;
+    height: 130px;
+    bottom: -80px;
+    right: -130px;
+}
+
+/* Placed State on Character matching the natural sleep pose */
+.scene-container.active-sleep .flying-pillow {
+    opacity: 1;
+    top: 16px;
+    left: 20px;
+    transform: rotate(-14deg) scale(0.95);
+    z-index: 0; /* Behind head */
+}
+
+.scene-container.active-sleep .flying-blanket {
+    opacity: 1;
+    bottom: -20px;
+    right: -8px;
+    transform: rotate(70deg) scale(1);
+    z-index: 15; /* Over body */
+    filter: drop-shadow(-2px 0 6px rgba(0,0,0,0.2));
+}
+
+/* --- Keyframes --- */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-120vw) scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(120vw) scale(0.9);
+        opacity: 0;
+    }
+}
+
+@keyframes bodyFullAnimation {
+    0%   { transform: translateY(0) rotate(0deg); }
+    26%  { transform: translateY(0) rotate(2deg); }   
+    35%  { transform: translateY(0) rotate(-0.3deg); }  
+    40%  { transform: translateY(0) rotate(0deg); }
+    70%  { transform: translateY(-3px) rotate(0.4deg); } 
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes headFullAnimation {
+    0%   { transform: rotate(0deg); }
+    22%  { transform: rotate(-1deg); }  
+    30%  { transform: rotate(1.1deg); }   
+    36%  { transform: rotate(-0.5deg); }
+    40%  { transform: rotate(0deg); }
+    70%  { transform: rotate(-0.5deg); } 
+    85%  { transform: rotate(0.4deg); }   
+    100% { transform: rotate(0deg); }
+}
+
+
+
+/* Victory Modal Screen (Pure CSS) */
+.victory-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    direction: rtl; /* Ensure text is right-to-left for Hebrew */
+}
+
+.victory-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.victory-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    transform: scale(0.95);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.victory-modal.show .victory-card {
+    transform: scale(1);
+}
+
+.victory-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+}
+
+.victory-title {
+    font-family: 'Karantina', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+}
+
+.victory-text {
+    color: #475569;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.victory-btn {
+    background-color: #00A5F7;
+    color: white;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 165, 247, 0.3);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.victory-btn:hover {
+    background-color: #008bd1;
+}
+
+.victory-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* --- התאמה רספונסיבית לכלל מכשירי המובייל (עד רוחב 576 פיקסלים) --- */
+@media (max-width: 480px) {
+    .header {
+        height: 15vh;
+        padding: 0 10px;
+    }
+
+    .header .magen_david {
+        height: 15%;
+    }
+
+    .game-instructions {
+        font-size: 1.3rem;
+        white-space: nowrap;
+    }
+
+    .game-instructions span {
+        font-size: 1.5rem;
+    }
+
+    .victory-card {
+        padding: 20px;
+        max-width: 320px;
+    }
+
+    .victory-title {
+        font-size: 2.5rem;
+    }
+
+    .victory-text {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    .victory-btn {
+        padding: 10px 26px;
+        font-size: 1.1rem;
+    }
+}

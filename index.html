@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleepolitics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@100;200;300;400;500;600;700&family=Karantina:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header">
+        <img src="images/magen_david.png" class="magen_david" alt="Magen David">
+        <p class="game-instructions">התאימו בין המצעים לראשי המפלגות,<br><span>ושלחו את הפוליטיקאים לישון!</span></p>
+        <img src="images/magen_david.png" class="magen_david" alt="Magen David">
+    </div>
+    
+    <div class="main-container">
+        <!-- Pillow Carousel (Top) -->
+        <div class="carousel-box" id="pillowCarousel">
+            <button class="carousel-arrow prev-btn" aria-label="Previous Pillow">&#10094;</button>
+            <div class="carousel-viewport">
+                <img class="carousel-img" src="" alt="Pillow" onerror="this.src='https://placehold.co/160x100/ffffff/00A5F7?text=Pillow'">
+            </div>
+            <button class="carousel-arrow next-btn" aria-label="Next Pillow">&#10095;</button>
+        </div>
+
+        <!-- Centered Scene Container -->
+        <div class="scene-container">
+            <div class="character-wrapper slide-in-left" id="characterWrapper">
+                <!-- Flying Pillow -->
+                <img src="" class="flying-item flying-pillow" id="flyingPillow" alt="Flying Pillow" onerror="this.src='https://placehold.co/90x60/ffffff/00A5F7?text=Pillow'">
+                
+                <!-- Character -->
+                <div class="character" id="character">
+                    <img src="" class="char char-body" id="charBody" alt="Character Body" onerror="this.src='https://placehold.co/140x200/1e40af/ffffff?text=Body'">
+                    <img src="" class="char char-head" id="charHead" alt="Character Head" onerror="this.src='https://placehold.co/140x110/3b82f6/ffffff?text=Head'">
+                </div>
+
+                <!-- Flying Blanket -->
+                <img src="" class="flying-item flying-blanket" id="flyingBlanket" alt="Flying Blanket" onerror="this.src='https://placehold.co/120x80/ffffff/00A5F7?text=Blanket'">
+            </div>
+        </div>
+
+        <!-- Blanket Carousel (Bottom) -->
+        <div class="carousel-box" id="blanketCarousel">
+            <button class="carousel-arrow prev-btn" aria-label="Previous Blanket">&#10094;</button>
+            <div class="carousel-viewport">
+                <img class="carousel-img" src="" alt="Blanket" onerror="this.src='https://placehold.co/90x60/ffffff/00A5F7?text=Blanket'">
+            </div>
+            <button class="carousel-arrow next-btn" aria-label="Next Blanket">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Victory Modal Screen -->
+    <div class="victory-modal" id="victoryModal">
+        <div class="victory-card" id="victoryCard">
+            <div class="victory-emoji">👑💤</div>
+            <h2 class="victory-title">כל הכבוד!</h2>
+            <p class="victory-text">התאמת בהצלחה את המצעים לראשי המפלגות!<br>כל הפוליטיקאים הלכו לישון.</p>
+            <button onclick="location.reload()" class="victory-btn">
+                שחק שוב
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
