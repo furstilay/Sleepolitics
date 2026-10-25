@@ -243,8 +243,34 @@ function showVictory() {
     }
 }
 
+
+
+function preloadAllAssets() {
+    const allImages = [
+        ...globalExtraPillows,
+        ...globalExtraBlankets,
+    ];
+
+    charactersData.forEach(char => {
+        allImages.push(
+            char.body,
+            char.headAwake,
+            char.headSleep,
+            char.correctPillow,
+            char.correctBlanket
+        );
+    });
+
+    allImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+
 // Initialize game on load
 window.addEventListener('DOMContentLoaded', () => {
+    preloadAllAssets();
     initCarouselControls('pillowCarousel', 'pillow');
     initCarouselControls('blanketCarousel', 'blanket');
     initGame();
